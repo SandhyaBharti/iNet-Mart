@@ -18,6 +18,10 @@ const Products = () => {
 
     // Check if user is admin
     const isAdmin = userInfo && userInfo.role === 'admin';
+    
+    // Show admin secret key
+    const [showSecret, setShowSecret] = useState(false);
+    const toggleSecret = () => setShowSecret(!showSecret);
 
     const categories = ['Electronics', 'Clothing', 'Food', 'Books', 'Home', 'Sports', 'Other'];
 
@@ -50,7 +54,7 @@ const Products = () => {
 
     const handleAddToCart = (product) => {
         addToCart(product, 1);
-        
+
         // Create a toast notification instead of alert
         const toast = document.createElement('div');
         toast.className = 'fixed top-20 right-4 glass-morphism border border-emerald-200 text-emerald-700 px-6 py-3 rounded-xl shadow-lg z-50 animate-slide-up';
@@ -61,7 +65,7 @@ const Products = () => {
             </div>
         `;
         document.body.appendChild(toast);
-        
+
         setTimeout(() => {
             toast.style.opacity = '0';
             toast.style.transform = 'translateX(100%)';
@@ -80,13 +84,46 @@ const Products = () => {
                         <h1 className="text-5xl font-bold mb-2 gradient-text">Products</h1>
                         <p className="text-slate-600 text-lg">Discover amazing items in our collection</p>
                     </div>
-                    {isAdmin && (
-                        <Link to="/products/new" className="btn btn-primary shadow-lg hover:shadow-xl">
-                            <span className="text-lg">➕</span>
-                            Add Product
-                        </Link>
-                    )}
+                    <div className="flex gap-2">
+                        {isAdmin && (
+                            <Link to="/products/new" className="btn btn-primary shadow-lg hover:shadow-xl">
+                                <span className="text-lg">➕</span>
+                                Add Product
+                            </Link>
+                        )}
+                        {isAdmin && (
+                            <button
+                                onClick={toggleSecret}
+                                className="btn btn-outline shadow-lg hover:shadow-xl"
+                                title="Show Admin Secret"
+                            >
+                                <span className="text-lg">{showSecret ? '👁️' : '👁️‍🗨️'}</span>
+                            </button>
+                        )}
+                    </div>
                 </div>
+                
+                {/* Admin Secret Display */}
+                {isAdmin && showSecret && (
+                    <div className="mb-6 animate-fade-in">
+                        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-4 rounded-xl shadow-lg">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <h3 className="text-lg font-bold mb-1">🔑 Admin Secret Key</h3>
+                                    <p className="text-sm opacity-90">JWT Secret for Development</p>
+                                </div>
+                                <div className="text-right">
+                                    <code className="bg-black/20 px-3 py-1 rounded text-xs">
+                                        process.env.JWT_SECRET
+                                    </code>
+                                </div>
+                            </div>
+                            <div className="mt-3 text-xs opacity-75">
+                                ⚠️ Keep this secret secure and never share it publicly
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {/* Filters */}
                 <div className="card-hover mb-8 animate-slide-up">
@@ -94,7 +131,7 @@ const Products = () => {
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                             <div className="relative">
                                 <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">
-                                    
+
                                 </span>
                                 <input
                                     type="text"
@@ -107,7 +144,7 @@ const Products = () => {
 
                             <div className="relative">
                                 <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">
-                                    
+
                                 </span>
                                 <select value={category} onChange={(e) => setCategory(e.target.value)} className="input pl-12 appearance-none">
                                     <option value="">🛍️ All Categories</option>
@@ -119,7 +156,7 @@ const Products = () => {
 
                             <div className="relative">
                                 <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">
-                                    
+
                                 </span>
                                 <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="input pl-12 appearance-none">
                                     <option value="createdAt">🗓️ Sort by Date</option>
@@ -131,7 +168,7 @@ const Products = () => {
 
                             <div className="relative">
                                 <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400">
-                                    
+
                                 </span>
                                 <select value={order} onChange={(e) => setOrder(e.target.value)} className="input pl-12 appearance-none">
                                     <option value="desc">⬇️ Descending</option>
@@ -145,16 +182,16 @@ const Products = () => {
                 {/* Products Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-fade-in">
                     {products.map((product, index) => (
-                        <div 
-                            key={product._id} 
+                        <div
+                            key={product._id}
                             className="card-hover group hover:scale-105 transition-all duration-500"
                             style={{ animationDelay: `${index * 100}ms` }}
                         >
                             {/* Product Image */}
                             <div className="relative mb-4 h-48 bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl overflow-hidden">
                                 {product.imageUrl ? (
-                                    <img 
-                                        src={getImageUrl(product.imageUrl)} 
+                                    <img
+                                        src={getImageUrl(product.imageUrl)}
                                         alt={product.name}
                                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                         onError={(e) => {
@@ -183,9 +220,9 @@ const Products = () => {
                                         <span className="badge badge-warning">Low Stock</span>
                                     </div>
                                 )}
-                                                            </div>
+                            </div>
 
-                            {/* Product Details */}
+                            {/* Product Details */} 
                             <div className="p-4">
                                 <div className="mb-2">
                                     <h3 className="text-lg font-semibold text-slate-800 group-hover:text-indigo-600 transition-colors">
@@ -225,8 +262,8 @@ const Products = () => {
                                         </Link>
                                     )}
                                     {isAdmin && (
-                                        <button 
-                                            onClick={() => handleDelete(product._id)} 
+                                        <button
+                                            onClick={() => handleDelete(product._id)}
                                             className="btn btn-danger"
                                         >
                                             <span>🗑️</span>
