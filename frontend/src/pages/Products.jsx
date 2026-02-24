@@ -38,11 +38,16 @@ const Products = () => {
 
     const fetchProducts = async () => {
         try {
-            const params = { search, category, sortBy, order };
+            console.log('=== FETCHING PRODUCTS ===');
+            console.log('API call to:', '/products');
+            console.log('Params:', { search, category, sortBy, order });
             const { data } = await api.get('/products', { params });
+            console.log('Products received:', data);
+            console.log('Products length:', data?.length);
             setProducts(data);
         } catch (err) {
             console.error('Failed to fetch products:', err);
+            console.error('Error details:', err.response?.data);
         } finally {
             setLoading(false);
         }
