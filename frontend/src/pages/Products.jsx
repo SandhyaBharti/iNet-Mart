@@ -19,6 +19,14 @@ const Products = () => {
     // Check if user is admin
     const isAdmin = userInfo && userInfo.role === 'admin';
     
+    // Debug logging to check admin status
+    console.log('Current user info:', userInfo);
+    console.log('Is admin check:', isAdmin);
+    console.log('User role:', userInfo?.role);
+    
+    // Temporary force admin for testing - REMOVE THIS LINE AFTER TESTING
+    const forceAdmin = true; // TEMPORARY - DELETE AFTER TESTING
+    
     // Show admin secret key
     const [showSecret, setShowSecret] = useState(false);
     const toggleSecret = () => setShowSecret(!showSecret);
@@ -85,13 +93,13 @@ const Products = () => {
                         <p className="text-slate-600 text-lg">Discover amazing items in our collection</p>
                     </div>
                     <div className="flex gap-2">
-                        {isAdmin && (
+                        {(isAdmin || forceAdmin) && (
                             <Link to="/products/new" className="btn btn-primary shadow-lg hover:shadow-xl">
                                 <span className="text-lg">➕</span>
                                 Add Product
                             </Link>
                         )}
-                        {isAdmin && (
+                        {(isAdmin || forceAdmin) && (
                             <button
                                 onClick={toggleSecret}
                                 className="btn btn-outline shadow-lg hover:shadow-xl"
@@ -254,7 +262,7 @@ const Products = () => {
                                         <span>🛒</span>
                                         Add to Cart
                                     </button>
-                                    {isAdmin && (
+                                    {(isAdmin || forceAdmin) && (
                                         <Link
                                             to={`/products/edit/${product._id}`}
                                             className="btn btn-outline"
@@ -262,7 +270,7 @@ const Products = () => {
                                             <span>✏️</span>
                                         </Link>
                                     )}
-                                    {isAdmin && (
+                                    {(isAdmin || forceAdmin) && (
                                         <button
                                             onClick={() => handleDelete(product._id)}
                                             className="btn btn-danger"
