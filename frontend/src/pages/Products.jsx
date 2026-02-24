@@ -4,6 +4,7 @@ import api, { getImageUrl } from '../api/axios';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -13,6 +14,10 @@ const Products = () => {
     const [sortBy, setSortBy] = useState('createdAt');
     const [order, setOrder] = useState('desc');
     const { addToCart } = useCart();
+    const { userInfo } = useAuth();
+
+    // Check if user is admin
+    const isAdmin = userInfo && userInfo.role === 'admin';
 
     const categories = ['Electronics', 'Clothing', 'Food', 'Books', 'Home', 'Sports', 'Other'];
 
@@ -75,10 +80,12 @@ const Products = () => {
                         <h1 className="text-5xl font-bold mb-2 gradient-text">Products</h1>
                         <p className="text-slate-600 text-lg">Discover amazing items in our collection</p>
                     </div>
-                    <Link to="/products/new" className="btn btn-primary shadow-lg hover:shadow-xl">
-                        <span className="text-lg">➕</span>
-                        Add Product
-                    </Link>
+                    {isAdmin && (
+                        <Link to="/products/new" className="btn btn-primary shadow-lg hover:shadow-xl">
+                            <span className="text-lg">➕</span>
+                            Add Product
+                        </Link>
+                    )}
                 </div>
 
                 {/* Filters */}
@@ -209,18 +216,22 @@ const Products = () => {
                                         <span>🛒</span>
                                         Add to Cart
                                     </button>
-                                    <Link
-                                        to={`/products/edit/${product._id}`}
-                                        className="btn btn-outline"
-                                    >
-                                        <span>✏️</span>
-                                    </Link>
-                                    <button 
-                                        onClick={() => handleDelete(product._id)} 
-                                        className="btn btn-danger"
-                                    >
-                                        <span>🗑️</span>
-                                    </button>
+                                    {isAdmin && (
+                                        <Link
+                                            to={`/products/edit/${product._id}`}
+                                            className="btn btn-outline"
+                                        >
+                                            <span>✏️</span>
+                                        </Link>
+                                    )}
+                                    {isAdmin && (
+                                        <button 
+                                            onClick={() => handleDelete(product._id)} 
+                                            className="btn btn-danger"
+                                        >
+                                            <span>🗑️</span>
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </div>
