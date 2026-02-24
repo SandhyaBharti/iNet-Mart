@@ -1,24 +1,28 @@
-# Mini E-Commerce with Inventory Analytics
+# Desi Delights - E-Commerce Platform
 
-A full-stack MERN (MongoDB, Express, React, Node.js) application for managing e-commerce inventory with comprehensive analytics and visualization.
+A modern full-stack MERN (MongoDB, Express, React, Node.js) e-commerce platform for Desi Delights with complete product management, shopping cart, order processing, and analytics capabilities.
 
-## Features
+## 🌟 Features
 
-✅ **User Authentication** - JWT-based secure authentication  
-✅ **Product Management** - Full CRUD operations with validation  
-✅ **Order Processing** - Shopping cart and order management  
+✅ **User Authentication** - JWT-based secure login/registration  
+✅ **Product Management** - Full CRUD operations with image support  
+✅ **Shopping Cart** - Add to cart, quantity management  
+✅ **Order Processing** - Complete order management system  
 ✅ **Analytics Dashboard** - Interactive charts and metrics  
-✅ **Inventory Tracking** - Real-time stock monitoring  
-✅ **Activity Logging** - Complete audit trail  
+✅ **Activity Tracking** - Complete audit trail  
+✅ **Product Images** - Custom image upload and display  
 ✅ **Search & Filter** - Advanced product filtering and sorting  
 ✅ **Responsive Design** - Modern UI with Tailwind CSS  
+✅ **Indian Currency** - Prices displayed in ₹ (Rupees)  
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 ### Backend
 - **Node.js** & **Express.js** - Server framework
 - **MongoDB** & **Mongoose** - Database
 - **JWT** & **bcrypt** - Authentication & security
+- **Multer** - Image upload handling
+- **CORS** - Cross-origin resource sharing
 - **Express Validator** - Input validation
 
 ### Frontend
@@ -27,65 +31,79 @@ A full-stack MERN (MongoDB, Express, React, Node.js) application for managing e-
 - **Axios** - HTTP client
 - **Recharts** - Data visualization
 - **Tailwind CSS** - Styling
+- **React Context** - State management
 
-## Project Structure
+## 📁 Project Structure
 
 ```
-E commerce/
+Desi-Delights/
 ├── backend/
 │   ├── config/
-│   │   └── db.js
+│   │   └── db.js                 # Database connection
 │   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── productController.js
-│   │   ├── orderController.js
-│   │   ├── analyticsController.js
-│   │   └── activityController.js
+│   │   ├── authController.js     # Authentication logic
+│   │   ├── productController.js  # Product management
+│   │   ├── orderController.js    # Order processing
+│   │   ├── analyticsController.js # Analytics & metrics
+│   │   └── activityController.js # Activity logging
 │   ├── middleware/
-│   │   ├── auth.js
-│   │   └── errorHandler.js
+│   │   ├── auth.js               # Authentication middleware
+│   │   └── errorHandler.js      # Error handling
 │   ├── models/
-│   │   ├── User.js
-│   │   ├── Product.js
-│   │   ├── Order.js
-│   │   └── Activity.js
+│   │   ├── User.js               # User schema
+│   │   ├── Product.js            # Product schema
+│   │   ├── Order.js              # Order schema
+│   │   └── Activity.js           # Activity schema
 │   ├── routes/
-│   │   ├── auth.js
-│   │   ├── products.js
-│   │   ├── orders.js
-│   │   ├── analytics.js
-│   │   └── activity.js
+│   │   ├── auth.js               # Auth routes
+│   │   ├── products.js           # Product routes
+│   │   ├── orders.js             # Order routes
+│   │   ├── analytics.js          # Analytics routes
+│   │   ├── activity.js           # Activity routes
+│   │   └── upload.js            # Image upload route
+│   ├── uploads/                  # Product images folder
+│   │   ├── headphones.jpg        # Wireless Bluetooth Headphones
+│   │   ├── tshirt.jpg           # Men's Casual T-Shirt
+│   │   ├── almonds.jpg          # Organic Almonds 500g
+│   │   ├── jsbook.jpg           # JavaScript: The Complete Guide
+│   │   ├── bottle.jpg           # Stainless Steel Water Bottle
+│   │   ├── yogamat.jpg          # Yoga Mat Anti-Slip
+│   │   ├── bulb.jpg             # Smart LED Bulb
+│   │   ├── shoes.jpg            # Women's Running Shoes
+│   │   ├── dinner.jpg           # Ceramic Dinner Set (24 pcs)
+│   │   └── protein.jpg         # Protein Powder 1kg
 │   ├── utils/
-│   │   ├── validation.js
-│   │   └── activityLogger.js
-│   ├── .env
+│   │   └── validation.js         # Input validation
+│   ├── .env                      # Environment variables
+│   ├── .env.example              # Environment template
 │   ├── package.json
-│   └── server.js
+│   └── server.js                 # Main server file
 │
 └── frontend/
     ├── src/
     │   ├── api/
-    │   │   └── axios.js
+    │   │   └── axios.js          # API client with image helpers
     │   ├── components/
-    │   │   ├── Navbar.jsx
-    │   │   ├── PrivateRoute.jsx
-    │   │   ├── LoadingSpinner.jsx
-    │   │   └── ErrorMessage.jsx
+    │   │   ├── Navbar.jsx        # Navigation component
+    │   │   ├── AdminRoute.jsx    # Admin protection
+    │   │   ├── PrivateRoute.jsx  # Auth protection
+    │   │   ├── LoadingSpinner.jsx # Loading component
+    │   │   └── ErrorMessage.jsx   # Error display
     │   ├── context/
-    │   │   ├── AuthContext.jsx
-    │   │   └── CartContext.jsx
+    │   │   ├── AuthContext.jsx   # Authentication context
+    │   │   └── CartContext.jsx   # Shopping cart context
     │   ├── pages/
-    │   │   ├── Login.jsx
-    │   │   ├── Register.jsx
-    │   │   ├── Dashboard.jsx
-    │   │   ├── Products.jsx
-    │   │   ├── ProductForm.jsx
-    │   │   ├── Orders.jsx
-    │   │   ├── Cart.jsx
-    │   │   └── Activity.jsx
-    │   ├── App.jsx
-    │   ├── main.jsx
-    │   └── index.css
+    │   │   ├── Login.jsx         # Login page
+    │   │   ├── Register.jsx      # Registration page
+    │   │   ├── Products.jsx      # Products listing
+    │   │   ├── ProductForm.jsx   # Add/Edit products
+    │   │   ├── Orders.jsx        # Orders management
+    │   │   ├── Cart.jsx          # Shopping cart
+    │   │   ├── Dashboard.jsx     # Analytics dashboard
+    │   │   └── Activity.jsx      # Activity logs
+    │   ├── App.jsx               # Main app component
+    │   ├── main.jsx              # App entry point
+    │   └── index.css             # Global styles
     ├── index.html
     ├── package.json
     ├── tailwind.config.js
@@ -93,7 +111,7 @@ E commerce/
     └── vite.config.js
 ```
 
-## Setup Instructions
+## 🚀 Setup Instructions
 
 ### Prerequisites
 - Node.js (v16 or higher)
@@ -115,7 +133,7 @@ E commerce/
 3. Create `.env` file (copy from `.env.example`):
    ```env
    PORT=5000
-   MONGODB_URI=mongodb://localhost:27017/ecommerce
+   MONGODB_URI=mongodb://localhost:27017/desi-delights
    JWT_SECRET=your_jwt_secret_key_here
    JWT_EXPIRE=7d
    NODE_ENV=development
@@ -128,7 +146,7 @@ E commerce/
 
 5. Start the server:
    ```bash
-   npm run dev
+   npm start
    ```
 
    The backend will run on `http://localhost:5000`
@@ -150,9 +168,9 @@ E commerce/
    npm run dev
    ```
 
-   The frontend will run on `http://localhost:3000`
+   The frontend will run on `http://localhost:3001`
 
-## API Endpoints
+## 📡 API Endpoints
 
 ### Authentication
 - `POST /api/auth/register` - Register new user
@@ -165,6 +183,9 @@ E commerce/
 - `POST /api/products` - Create product (protected)
 - `PUT /api/products/:id` - Update product (protected)
 - `DELETE /api/products/:id` - Delete product (protected)
+
+### Image Upload
+- `POST /api/upload` - Upload product image (protected)
 
 ### Orders
 - `GET /api/orders` - Get all orders (protected)
@@ -181,40 +202,50 @@ E commerce/
 - `GET /api/activity` - Get activity logs (protected)
 - `GET /api/activity/user/:userId` - Get user-specific activities (protected)
 
-## Features Walkthrough
+## 🎯 Key Features
 
-### 1. User Authentication
-- Secure registration and login with JWT
-- Password hashing with bcrypt
-- Persistent sessions with localStorage
-- Protected routes with authentication middleware
-
-### 2. Product Management
-- Add, edit, and delete products
+### 1. Product Management
+- Add, edit, and delete products with images
 - Real-time inventory tracking
-- Category-based organization
+- Category-based organization (Electronics, Clothing, Food, Books, Home, Sports, Other)
 - Search and filter functionality
-- Stock status indicators
+- Stock status indicators (Low Stock, Out of Stock)
+- Custom image upload with preview
+- Product images served from `/uploads` directory
 
-### 3. Analytics Dashboard
-- **Inventory Metrics**: Total products, low stock alerts, category distribution
-- **Sales Metrics**: Revenue, order count, trends
-- **Visualizations**: Pie charts, line graphs, bar charts
-- **Recent Activity**: Real-time activity feed
-
-### 4. Order Processing
-- Shopping cart with quantity controls
+### 2. Shopping Cart & Orders
+- Add products to cart with quantity controls
+- Cart persistence across sessions
 - Order creation with customer details
 - Automatic inventory deduction
 - Order status tracking (pending → processing → shipped → delivered)
 
-### 5. Activity Tracking
-- Comprehensive audit log
-- Filter by entity type and action
-- User attribution for all actions
-- Timestamp tracking
+### 3. Analytics Dashboard
+- **Inventory Metrics**: Total products, low stock alerts, category distribution
+- **Sales Metrics**: Revenue, order count, trends
+- **Visualizations**: Pie charts, line graphs, bar charts using Recharts
+- **Recent Activity**: Real-time activity feed
 
-## Database Schema
+### 4. Activity Tracking
+- Comprehensive audit log for all user actions
+- Filter by entity type (product/order/user) and action
+- User attribution for all actions
+- Timestamp tracking with search capabilities
+
+### 5. User Authentication
+- Secure registration and login with JWT
+- Password hashing with bcrypt
+- Role-based access control (User/Admin)
+- Protected routes for admin functions
+
+### 6. Image Management
+- Upload product images via backend (`/api/upload`)
+- Serve images from `/uploads` directory with CORS headers
+- Image preview and error handling in frontend
+- Support for external image URLs
+- Fallback to category emojis if image fails to load
+
+## 🗄️ Database Schema
 
 ### User
 ```javascript
@@ -277,18 +308,36 @@ E commerce/
 }
 ```
 
-## Development Timeline
+## 💰 Currency & Pricing
 
-- **Day 1-2**: Project setup, database schema
-- **Day 3-4**: Backend API development
-- **Day 5-7**: Frontend UI with Tailwind CSS
-- **Day 8-9**: Analytics and charts integration
-- **Day 10-11**: Shopping cart and orders
-- **Day 12-13**: Testing and bug fixes
-- **Day 14**: Polish and optimization
-- **Day 15**: Documentation and deployment prep
+- All prices displayed in **Indian Rupees (₹)**
+- Product prices stored as numbers in database
+- Cart totals calculated in ₹
+- Order amounts in ₹
+- Consistent currency display across all pages
 
-## Production Deployment
+## 🖼️ Product Images
+
+- Images stored in `backend/uploads/` folder
+- Supported formats: JPG, PNG, WebP
+- Image size limit: 2MB
+- Automatic image optimization
+- Fallback to category emojis if image fails to load
+- Current images: 10 product-specific images
+- Image URLs: `http://localhost:5000/uploads/[filename]`
+
+## 🎨 UI/UX Features
+
+- Modern, responsive design with Tailwind CSS
+- Smooth animations and transitions
+- Loading states and error handling
+- Mobile-friendly interface
+- Professional color scheme
+- Hover effects on product cards
+- Glass morphism effects
+- Consistent design language
+
+## 🚀 Production Deployment
 
 ### Backend
 1. Set `NODE_ENV=production` in .env
@@ -304,21 +353,21 @@ E commerce/
 2. Deploy to Vercel/Netlify
 3. Update API base URL for production
 
-## Contributing
+## 🤝 Contributing
 
-1. Fork the repository
+1. Fork the repository from: `https://github.com/SandhyaBharti/Desi-Delights`
 2. Create feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit changes (`git commit -m 'Add AmazingFeature'`)
 4. Push to branch (`git push origin feature/AmazingFeature`)
 5. Open Pull Request
 
-## License
+## 📄 License
 
 MIT License - feel free to use this project for learning or commercial purposes.
 
-## Author
+## 👨‍💻 Author
 
-Created as part of MERN Stack learning project.
+Created for Desi Delights e-commerce platform.
 
 ---
 
