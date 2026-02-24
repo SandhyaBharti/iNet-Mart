@@ -14,19 +14,19 @@ const Products = () => {
     const [sortBy, setSortBy] = useState('createdAt');
     const [order, setOrder] = useState('desc');
     const { addToCart } = useCart();
-    const { userInfo } = useAuth();
+    const { user } = useAuth();
 
     // Check if user is admin
-    const isAdmin = userInfo && userInfo.role === 'admin';
-    
+    const isAdmin = user && user.role === 'admin';
+
     // Debug logging to check admin status
     console.log('=== ADMIN DEBUG ===');
-    console.log('Current user info:', userInfo);
-    console.log('User role:', userInfo?.role);
+    console.log('Current user info:', user);
+    console.log('User role:', user?.role);
     console.log('Is admin check:', isAdmin);
-    console.log('Type of userInfo:', typeof userInfo);
-    console.log('Type of userInfo.role:', typeof userInfo?.role);
-    
+    console.log('Type of user:', typeof user);
+    console.log('Type of user.role:', typeof user?.role);
+
     // TEMPORARY: Force admin buttons to show for testing
     const showAdminButtons = isAdmin || true; // FORCE SHOW FOR TESTING
 
@@ -100,7 +100,7 @@ const Products = () => {
                         )}
                     </div>
                 </div>
-                
+
                 {/* Filters */}
                 <div className="card-hover mb-8 animate-slide-up">
                     <div className="p-6">
@@ -198,7 +198,7 @@ const Products = () => {
                                 )}
                             </div>
 
-                            {/* Product Details */} 
+                            {/* Product Details */}
                             <div className="p-4">
                                 <div className="mb-2">
                                     <h3 className="text-lg font-semibold text-slate-800 group-hover:text-indigo-600 transition-colors">
