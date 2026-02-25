@@ -112,14 +112,14 @@ const Navbar = () => {
                                 <>
                                     <Link to="/" className="nav-link">
                                         <span className="flex items-center gap-2">
-                                            <span className="text-base lg:text-lg">�</span>
+                                            <span className="text-base lg:text-lg"></span>
                                             <span className="font-semibold text-sm lg:text-base">Dashboard</span>
                                         </span>
                                     </Link>
 
                                     <Link to="/users" className="nav-link">
                                         <span className="flex items-center gap-2">
-                                            <span className="text-base lg:text-lg">�</span>
+                                            <span className="text-base lg:text-lg"></span>
                                             <span className="font-semibold text-sm lg:text-base">Users</span>
                                         </span>
                                     </Link>
