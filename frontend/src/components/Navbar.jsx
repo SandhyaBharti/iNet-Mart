@@ -99,13 +99,7 @@ const Navbar = () => {
                                                 <span className="font-semibold md:hidden">📊</span>
                                             </span>
                                         </Link>
-                                        <Link to="/users" className="nav-link">
-                                            <span className="flex items-center gap-2">
-                                                <span className="text-lg">👥</span>
-                                                <span className="font-semibold hidden md:inline">Users</span>
-                                                <span className="font-semibold md:hidden">👥</span>
-                                            </span>
-                                        </Link>
+
                                         <Link to="/activity" className="nav-link">
                                             <span className="flex items-center gap-2">
                                                 <span className="text-lg">📋</span>
@@ -281,12 +275,7 @@ const Navbar = () => {
                                             <span className="font-semibold">Dashboard</span>
                                         </span>
                                     </Link>
-                                    <Link to="/users" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
-                                        <span className="flex items-center gap-2">
-                                            <span className="text-lg">👥</span>
-                                            <span className="font-semibold">Users</span>
-                                        </span>
-                                    </Link>
+
                                     <Link to="/activity" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
                                         <span className="flex items-center gap-2">
                                             <span className="text-lg">📋</span>
