@@ -70,10 +70,10 @@ const Navbar = () => {
                             <div className="absolute -top-1 -right-1 w-2 h-2 bg-indigo-500 rounded-full animate-pulse-soft"></div>
                         </div>
                         <span className="gradient-text font-extrabold tracking-tight animate-pulse-soft hover:animate-bounce transition-all duration-300 hidden sm:block">
-                            Desi Delights
+                            iNet Mart
                         </span>
                         <span className="gradient-text font-extrabold tracking-tight animate-pulse-soft hover:animate-bounce transition-all duration-300 sm:hidden text-lg">
-                            DD
+                            iNM
                         </span>
                     </Link>
 

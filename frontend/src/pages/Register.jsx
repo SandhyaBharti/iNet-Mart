@@ -69,7 +69,7 @@ const Register = () => {
                         <h1 className="text-4xl font-bold mb-2 gradient-text">
                             Create Account
                         </h1>
-                        <p className="text-slate-600 text-lg">Join Desi Delights today</p>
+                        <p className="text-slate-600 text-lg">Join iNet Mart today</p>
                     </div>
 
                     <ErrorMessage message={error} />
