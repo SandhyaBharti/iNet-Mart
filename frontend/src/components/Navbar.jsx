@@ -78,51 +78,56 @@ const Navbar = () => {
                     </Link>
 
                     <div className="flex items-center gap-4 sm:gap-6">
-                        {/* Mobile menu button - Always visible for all users */}
+                        {/* Mobile menu button - Only show on small screens */}
                         <button
                             onClick={() => setShowMobileMenu(!showMobileMenu)}
-                            className="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors"
+                            className="lg:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors"
                         >
-                            <span className="text-xl sm:text-2xl">📱</span>
+                            <span className="text-xl sm:text-2xl">☰</span>
                         </button>
 
-                        {/* Desktop nav links */}
-                        <div className="hidden md:flex items-center gap-4 sm:gap-6">
+                        {/* Tablet and Desktop nav links */}
+                        <div className="hidden lg:flex items-center gap-4 sm:gap-6">
                             {/* Common nav links - Always visible */}
                             <div className="flex items-center gap-2">
                                 {user && isAdmin && (
                                     <>
                                         <Link to="/" className="nav-link">
                                             <span className="flex items-center gap-2">
-                                                <span className="text-lg">�</span>
-                                                <span className="font-semibold">Dashboard</span>
+                                                <span className="text-lg">📊</span>
+                                                <span className="font-semibold hidden md:inline">Dashboard</span>
+                                                <span className="font-semibold md:hidden">📊</span>
                                             </span>
                                         </Link>
                                         <Link to="/users" className="nav-link">
                                             <span className="flex items-center gap-2">
-                                                <span className="text-lg">�</span>
-                                                <span className="font-semibold">Users</span>
+                                                <span className="text-lg">👥</span>
+                                                <span className="font-semibold hidden md:inline">Users</span>
+                                                <span className="font-semibold md:hidden">👥</span>
                                             </span>
                                         </Link>
                                         <Link to="/activity" className="nav-link">
                                             <span className="flex items-center gap-2">
                                                 <span className="text-lg">📋</span>
-                                                <span className="font-semibold">Activity</span>
+                                                <span className="font-semibold hidden md:inline">Activity</span>
+                                                <span className="font-semibold md:hidden">📋</span>
                                             </span>
                                         </Link>
                                     </>
                                 )}
                                 <Link to="/products" className="nav-link">
                                     <span className="flex items-center gap-2">
-                                        <span className="text-lg">�</span>
-                                        <span className="font-semibold">Products</span>
+                                        <span className="text-lg">📦</span>
+                                        <span className="font-semibold hidden md:inline">Products</span>
+                                        <span className="font-semibold md:hidden">📦</span>
                                     </span>
                                 </Link>
                                 {user && (
                                     <Link to="/orders" className="nav-link">
                                         <span className="flex items-center gap-2">
                                             <span className="text-lg">📋</span>
-                                            <span className="font-semibold">Orders</span>
+                                            <span className="font-semibold hidden md:inline">Orders</span>
+                                            <span className="font-semibold md:hidden">📋</span>
                                         </span>
                                     </Link>
                                 )}
@@ -246,10 +251,149 @@ const Navbar = () => {
                             {!user && (
                                 <div className="hidden md:flex items-center gap-2">
                                     <Link to="/login" className="btn btn-ghost">
-                                        <span>Login</span>
+                                        <span className="hidden sm:inline">Login</span>
+                                        <span className="sm:hidden">🔑</span>
                                     </Link>
                                     <Link to="/register" className="btn btn-primary">
-                                        <span>Register</span>
+                                        <span className="hidden sm:inline">Register</span>
+                                        <span className="sm:hidden">📝</span>
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Tablet-specific navigation - Compact but visible */}
+                        <div className="hidden md:flex lg:hidden items-center gap-2">
+                            {user && isAdmin && (
+                                <>
+                                    <Link to="/" className="nav-link p-2" title="Dashboard">
+                                        <span className="text-lg">📊</span>
+                                    </Link>
+                                    <Link to="/users" className="nav-link p-2" title="Users">
+                                        <span className="text-lg">👥</span>
+                                    </Link>
+                                    <Link to="/activity" className="nav-link p-2" title="Activity">
+                                        <span className="text-lg">📋</span>
+                                    </Link>
+                                </>
+                            )}
+                            <Link to="/products" className="nav-link p-2" title="Products">
+                                <span className="text-lg">📦</span>
+                            </Link>
+                            {user && (
+                                <Link to="/orders" className="nav-link p-2" title="Orders">
+                                    <span className="text-lg">📋</span>
+                                </Link>
+                            )}
+                            <Link to="/cart" className="relative group" title="Cart">
+                                <div className="nav-link p-2">
+                                    <span className="text-xl block group-hover:scale-110 transition-transform">🛒</span>
+                                    {getTotalItems() > 0 && (
+                                        <span className="absolute -top-1 -right-1 bg-gradient-to-r from-indigo-500 to-indigo-600 text-white text-xs font-bold px-1.5 py-0.5 rounded-full min-w-[16px] text-center shadow-lg">
+                                            {getTotalItems()}
+                                        </span>
+                                    )}
+                                </div>
+                            </Link>
+
+                            {user ? (
+                                <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
+                                    <div className="relative" ref={dropdownRef}>
+                                        <button
+                                            onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                                            className="p-2 rounded-lg hover:bg-slate-100 transition-colors"
+                                            title="User Menu"
+                                        >
+                                            <div className={`w-8 h-8 rounded-full text-xs font-bold border flex items-center justify-center ${isAdmin
+                                                    ? 'bg-gradient-to-r from-purple-500/20 to-purple-600/20 text-purple-700 border-purple-300/50'
+                                                    : 'bg-gradient-to-r from-indigo-500/20 to-indigo-600/20 text-indigo-700 border-indigo-300/50'
+                                                }`}>
+                                                {isAdmin ? '🛡️' : '👤'}
+                                            </div>
+                                        </button>
+
+                                        {/* Profile Dropdown for Tablet */}
+                                        {showProfileDropdown && (
+                                            <div className="absolute right-0 mt-2 w-64 glass-morphism border border-slate-200 rounded-xl shadow-2xl overflow-hidden animate-fade-in">
+                                                <div className="p-4 border-b border-slate-200">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center">
+                                                            <span className="text-white font-bold">{user.name.charAt(0).toUpperCase()}</span>
+                                                        </div>
+                                                        <div>
+                                                            <p className="text-slate-800 font-bold">{user.name}</p>
+                                                            <p className="text-slate-600 text-xs">{user.email}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="p-3">
+                                                    <div className="px-3 py-2 text-slate-600 text-xs">
+                                                        Role: {isAdmin ? 'Administrator' : 'Customer'}
+                                                    </div>
+                                                    <div className="px-3 py-2 text-slate-600 text-xs">
+                                                        Member since: {new Date().toLocaleDateString()}
+                                                    </div>
+                                                    {!isAdmin && (
+                                                        <div className="mt-2 border-t border-slate-200 pt-2">
+                                                            {!showUpgrade ? (
+                                                                <button
+                                                                    onClick={() => setShowUpgrade(true)}
+                                                                    className="w-full text-left px-3 py-2 text-xs text-purple-600 font-semibold hover:bg-purple-50 rounded-lg transition-colors"
+                                                                >
+                                                                    🛡️ Upgrade to Admin
+                                                                </button>
+                                                            ) : (
+                                                                <form onSubmit={handleUpgradeRole} className="px-3 py-2 space-y-2">
+                                                                    <p className="text-xs font-semibold text-slate-700">Enter Admin Secret Key:</p>
+                                                                    <input
+                                                                        type="password"
+                                                                        value={upgradeSecret}
+                                                                        onChange={(e) => setUpgradeSecret(e.target.value)}
+                                                                        placeholder="Admin secret key"
+                                                                        className="w-full text-xs border border-slate-300 rounded-lg px-2 py-1.5 focus:outline-none focus:border-purple-400"
+                                                                        autoFocus
+                                                                    />
+                                                                    {upgradeError && <p className="text-red-500 text-xs">{upgradeError}</p>}
+                                                                    <div className="flex gap-2">
+                                                                        <button
+                                                                            type="submit"
+                                                                            disabled={upgradeLoading}
+                                                                            className="flex-1 bg-purple-600 text-white text-xs py-1.5 rounded-lg hover:bg-purple-700 transition-colors"
+                                                                        >
+                                                                            {upgradeLoading ? '...' : 'Confirm'}
+                                                                        </button>
+                                                                        <button
+                                                                            type="button"
+                                                                            onClick={() => { setShowUpgrade(false); setUpgradeError(''); setUpgradeSecret(''); }}
+                                                                            className="flex-1 bg-slate-200 text-slate-600 text-xs py-1.5 rounded-lg hover:bg-slate-300 transition-colors"
+                                                                        >
+                                                                            Cancel
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            )}
+                                                        </div>
+                                                    )}
+                                                    <div className="mt-2 border-t border-slate-200 pt-2">
+                                                        <button
+                                                            onClick={handleLogout}
+                                                            className="w-full text-left px-3 py-2 text-xs text-red-600 font-semibold hover:bg-red-50 rounded-lg transition-colors"
+                                                        >
+                                                            ➜ Logout
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="flex items-center gap-2">
+                                    <Link to="/login" className="btn btn-ghost btn-sm" title="Login">
+                                        <span>🔑</span>
+                                    </Link>
+                                    <Link to="/register" className="btn btn-primary btn-sm" title="Register">
+                                        <span>📝</span>
                                     </Link>
                                 </div>
                             )}
@@ -259,20 +403,20 @@ const Navbar = () => {
 
                 {/* Mobile Menu - Always Available */}
                 {showMobileMenu && (
-                    <div className="md:hidden border-t border-slate-200 glass-morphism" ref={mobileMenuRef}>
+                    <div className="lg:hidden border-t border-slate-200 glass-morphism" ref={mobileMenuRef}>
                         <div className="px-4 py-3 space-y-2">
                             {/* Admin-only mobile links - First in order */}
                             {user && isAdmin && (
                                 <>
                                     <Link to="/" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
                                         <span className="flex items-center gap-2">
-                                            <span className="text-lg">�</span>
+                                            <span className="text-lg">📊</span>
                                             <span className="font-semibold">Dashboard</span>
                                         </span>
                                     </Link>
                                     <Link to="/users" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
                                         <span className="flex items-center gap-2">
-                                            <span className="text-lg">�</span>
+                                            <span className="text-lg">👥</span>
                                             <span className="font-semibold">Users</span>
                                         </span>
                                     </Link>
@@ -288,7 +432,7 @@ const Navbar = () => {
                             {/* Common mobile links - Always visible */}
                             <Link to="/products" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
                                 <span className="flex items-center gap-2">
-                                    <span className="text-lg">�</span>
+                                    <span className="text-lg"></span>
                                     <span className="font-semibold">Products</span>
                                 </span>
                             </Link>
@@ -297,7 +441,7 @@ const Navbar = () => {
                             {user && (
                                 <Link to="/orders" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
                                     <span className="flex items-center gap-2">
-                                        <span className="text-lg">�</span>
+                                        <span className="text-lg"></span>
                                         <span className="font-semibold">Orders</span>
                                     </span>
                                 </Link>
@@ -306,7 +450,7 @@ const Navbar = () => {
                             {/* Cart link - Always visible */}
                             <Link to="/cart" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
                                 <span className="flex items-center gap-2">
-                                    <span className="text-lg">�</span>
+                                    <span className="text-lg"></span>
                                     <span className="font-semibold">Cart</span>
                                     {getTotalItems() > 0 && (
                                         <span className="bg-indigo-600 text-white text-xs px-2 py-1 rounded-full">
