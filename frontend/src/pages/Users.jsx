@@ -84,32 +84,32 @@ const Users = () => {
 
                 {/* Stats Cards */}
                 {stats && (
-                    <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-6 mb-4 sm:mb-6 lg:mb-8 animate-slide-up">
-                        <div className="card-hover bg-gradient-to-br from-blue-500 to-blue-600 text-white p-3 sm:p-4 lg:p-6 rounded-xl shadow-lg">
+                    <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-1.5 sm:gap-2 lg:gap-6 mb-3 sm:mb-4 lg:mb-8 animate-slide-up">
+                        <div className="card-hover bg-gradient-to-br from-blue-500 to-blue-600 text-white p-2 sm:p-3 lg:p-6 rounded-lg shadow-lg">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-blue-100 text-[10px] sm:text-xs lg:text-sm">Total Users</p>
-                                    <p className="text-lg sm:text-2xl lg:text-3xl font-bold">{stats.totalUsers}</p>
+                                    <p className="text-blue-100 text-[8px] sm:text-[10px] lg:text-sm">Total Users</p>
+                                    <p className="text-sm sm:text-lg lg:text-3xl font-bold">{stats.totalUsers}</p>
                                 </div>
-                                <div className="text-2xl sm:text-3xl lg:text-4xl">👥</div>
+                                <div className="text-lg sm:text-xl lg:text-4xl">👥</div>
                             </div>
                         </div>
-                        <div className="card-hover bg-gradient-to-br from-purple-500 to-purple-600 text-white p-3 sm:p-4 lg:p-6 rounded-xl shadow-lg">
+                        <div className="card-hover bg-gradient-to-br from-purple-500 to-purple-600 text-white p-2 sm:p-3 lg:p-6 rounded-lg shadow-lg">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-purple-100 text-[10px] sm:text-xs lg:text-sm">Admin Users</p>
-                                    <p className="text-lg sm:text-2xl lg:text-3xl font-bold">{stats.adminUsers}</p>
+                                    <p className="text-purple-100 text-[8px] sm:text-[10px] lg:text-sm">Admin Users</p>
+                                    <p className="text-sm sm:text-lg lg:text-3xl font-bold">{stats.adminUsers}</p>
                                 </div>
-                                <div className="text-2xl sm:text-3xl lg:text-4xl">🛡️</div>
+                                <div className="text-lg sm:text-xl lg:text-4xl">🛡️</div>
                             </div>
                         </div>
-                        <div className="card-hover bg-gradient-to-br from-green-500 to-green-600 text-white p-3 sm:p-4 lg:p-6 rounded-xl shadow-lg">
+                        <div className="card-hover bg-gradient-to-br from-green-500 to-green-600 text-white p-2 sm:p-3 lg:p-6 rounded-lg shadow-lg">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-green-100 text-[10px] sm:text-xs lg:text-sm">Regular Users</p>
-                                    <p className="text-lg sm:text-2xl lg:text-3xl font-bold">{stats.regularUsers}</p>
+                                    <p className="text-green-100 text-[8px] sm:text-[10px] lg:text-sm">Regular Users</p>
+                                    <p className="text-sm sm:text-lg lg:text-3xl font-bold">{stats.regularUsers}</p>
                                 </div>
-                                <div className="text-2xl sm:text-3xl lg:text-4xl">👤</div>
+                                <div className="text-lg sm:text-xl lg:text-4xl">👤</div>
                             </div>
                         </div>
                     </div>
@@ -152,7 +152,8 @@ const Users = () => {
 
                 {/* Users Table */}
                 <div className="card-hover animate-fade-in">
-                    <div className="overflow-x-auto">
+                    {/* Desktop Table */}
+                    <div className="hidden lg:block overflow-x-auto">
                         <table className="w-full">
                             <thead>
                                 <tr className="border-b border-slate-200">
@@ -203,19 +204,62 @@ const Users = () => {
                                 ))}
                             </tbody>
                         </table>
-                        
-                        {filteredUsers.length === 0 && (
-                            <div className="text-center py-6 sm:py-8 lg:py-12">
-                                <div className="text-4xl sm:text-5xl lg:text-6xl mb-2 sm:mb-4">👥</div>
-                                <h3 className="text-sm sm:text-base lg:text-xl font-semibold text-slate-700 mb-1 sm:mb-2">No users found</h3>
-                                <p className="text-xs sm:text-sm text-slate-500">
-                                    {search || roleFilter !== 'all'
-                                        ? 'Try adjusting your search or filters'
-                                        : 'No users have registered yet'}
-                                </p>
-                            </div>
-                        )}
                     </div>
+
+                    {/* Mobile/Tablet Cards */}
+                    <div className="lg:hidden space-y-2 sm:space-y-3">
+                        {filteredUsers.map((user) => (
+                            <div key={user._id} className="card p-2 sm:p-3 border border-slate-200 rounded-lg">
+                                <div className="flex flex-col gap-2 sm:gap-3">
+                                    {/* User Info */}
+                                    <div className="flex items-start justify-between">
+                                        <div className="flex-1">
+                                            <p className="font-semibold text-slate-800 text-xs sm:text-sm">{user.name}</p>
+                                            <p className="text-[8px] sm:text-[10px] text-slate-500">{user.email}</p>
+                                        </div>
+                                        <button
+                                            onClick={() => handleDeleteUser(user._id)}
+                                            className="btn btn-danger btn-xs text-[8px] sm:text-xs"
+                                            title="Delete user"
+                                        >
+                                            🗑️
+                                        </button>
+                                    </div>
+
+                                    {/* Role and Date */}
+                                    <div className="flex items-center justify-between">
+                                        <select
+                                            value={user.role}
+                                            onChange={(e) => handleRoleChange(user._id, e.target.value)}
+                                            className={`px-2 py-1 rounded-full text-[8px] sm:text-[10px] font-medium ${
+                                                user.role === 'admin'
+                                                    ? 'bg-purple-100 text-purple-700 border-purple-300'
+                                                    : 'bg-blue-100 text-blue-700 border-blue-300'
+                                            } border`}
+                                        >
+                                            <option value="user">👤 User</option>
+                                            <option value="admin">🛡️ Admin</option>
+                                        </select>
+                                        <p className="text-[8px] sm:text-[10px] text-slate-600">
+                                            {new Date(user.createdAt).toLocaleDateString()}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {filteredUsers.length === 0 && (
+                        <div className="text-center py-6 sm:py-8 lg:py-12">
+                            <div className="text-4xl sm:text-5xl lg:text-6xl mb-2 sm:mb-4">👥</div>
+                            <h3 className="text-sm sm:text-base lg:text-xl font-semibold text-slate-700 mb-1 sm:mb-2">No users found</h3>
+                            <p className="text-xs sm:text-sm text-slate-500">
+                                {search || roleFilter !== 'all'
+                                    ? 'Try adjusting your search or filters'
+                                    : 'No users have registered yet'}
+                            </p>
+                        </div>
+                    )}
                 </div>
 
                 {/* Recent Users */}
