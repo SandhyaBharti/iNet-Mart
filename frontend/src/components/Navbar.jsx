@@ -59,31 +59,31 @@ const Navbar = () => {
 
     return (
         <nav className="sticky top-0 z-50 glass-morphism border-b border-white/20 shadow-lg">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-16">
+            <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+                <div className="flex items-center justify-between h-12 sm:h-14 lg:h-16">
                     <Link
                         to={isAdmin ? '/' : '/products'}
-                        className="group flex items-center gap-2 sm:gap-3 text-xl sm:text-2xl font-bold hover:scale-105 transition-all duration-300"
+                        className="group flex items-center gap-1 sm:gap-2 text-lg sm:text-xl lg:text-2xl font-bold hover:scale-105 transition-all duration-300"
                     >
                         <div className="relative">
-                            <span className="text-2xl sm:text-3xl block transform group-hover:rotate-12 transition-transform duration-300">🛒</span>
+                            <span className="text-lg sm:text-xl lg:text-2xl block transform group-hover:rotate-12 transition-transform duration-300">🛒</span>
                             <div className="absolute -top-1 -right-1 w-2 h-2 bg-indigo-500 rounded-full animate-pulse-soft"></div>
                         </div>
-                        <span className="gradient-text font-extrabold tracking-tight animate-pulse-soft hover:animate-bounce transition-all duration-300 hidden sm:block">
+                        <span className="gradient-text font-extrabold tracking-tight animate-pulse-soft hover:animate-bounce transition-all duration-300 hidden sm:block text-sm sm:text-base lg:text-lg">
                             iNet Mart
                         </span>
-                        <span className="gradient-text font-extrabold tracking-tight animate-pulse-soft hover:animate-bounce transition-all duration-300 sm:hidden text-lg">
+                        <span className="gradient-text font-extrabold tracking-tight animate-pulse-soft hover:animate-bounce transition-all duration-300 sm:hidden text-base">
                             iNM
                         </span>
                     </Link>
 
-                    <div className="flex items-center gap-2 sm:gap-4 lg:gap-6">
+                    <div className="flex items-center gap-1 sm:gap-2 lg:gap-6">
                         {/* Mobile menu button - Show on mobile and tablet */}
                         <button
                             onClick={() => setShowMobileMenu(!showMobileMenu)}
-                            className="lg:hidden p-1.5 sm:p-2 rounded-lg hover:bg-slate-100 transition-colors"
+                            className="lg:hidden p-1 sm:p-1.5 rounded-md hover:bg-slate-100 transition-colors"
                         >
-                            <span className="text-lg sm:text-xl lg:text-2xl">☰</span>
+                            <span className="text-sm sm:text-base">☰</span>
                         </button>
 
                         {/* Desktop nav links only */}
