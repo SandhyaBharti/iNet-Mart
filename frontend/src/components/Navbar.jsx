@@ -90,29 +90,36 @@ const Navbar = () => {
 
                 {/* Desktop Navigation - Only on large screens */}
                 <div className="hidden lg:flex items-center justify-between">
-                    {/* Desktop nav links */}
-                    <div className="flex items-center gap-4">
-                        {/* Logo - Integrated with navigation */}
-                        <Link
-                            to={isAdmin ? '/' : '/products'}
-                            className="group flex items-center gap-1 text-sm sm:text-base lg:text-xl font-bold hover:scale-105 transition-all duration-300"
-                        >
-                            <div className="relative">
-                                <span className="text-sm sm:text-base lg:text-xl block transform group-hover:rotate-12 transition-transform duration-300">🛒</span>
-                                <div className="absolute -top-1 -right-1 w-2 h-2 bg-indigo-500 rounded-full animate-pulse-soft"></div>
-                            </div>
-                            <span className="gradient-text font-extrabold tracking-tight animate-pulse-soft hover:animate-bounce transition-all duration-300 text-[8px] sm:text-xs lg:text-base">
-                                iNet Mart
-                            </span>
-                        </Link>
+                    {/* Logo - Left side */}
+                    <Link
+                        to={isAdmin ? '/' : '/products'}
+                        className="group flex items-center gap-1 text-sm sm:text-base lg:text-xl font-bold hover:scale-105 transition-all duration-300"
+                    >
+                        <div className="relative">
+                            <span className="text-sm sm:text-base lg:text-xl block transform group-hover:rotate-12 transition-transform duration-300">🛒</span>
+                            <div className="absolute -top-1 -right-1 w-2 h-2 bg-indigo-500 rounded-full animate-pulse-soft"></div>
+                        </div>
+                        <span className="gradient-text font-extrabold tracking-tight animate-pulse-soft hover:animate-bounce transition-all duration-300 text-[8px] sm:text-xs lg:text-base">
+                            iNet Mart
+                        </span>
+                    </Link>
 
+                    {/* Navigation items - Right side with proper spacing */}
+                    <div className="flex items-center gap-4">
                         {/* Common nav links - Always visible */}
                         <div className="flex items-center gap-2">
                             {user && isAdmin && (
                                 <>
+                                    <Link to="/users" className="nav-link">
+                                        <span className="flex items-center gap-2">
+                                            <span className="text-base lg:text-lg">�</span>
+                                            <span className="font-semibold text-sm lg:text-base">Users</span>
+                                        </span>
+                                    </Link>
+
                                     <Link to="/" className="nav-link">
                                         <span className="flex items-center gap-2">
-                                            <span className="text-base lg:text-lg">📊</span>
+                                            <span className="text-base lg:text-lg">�📊</span>
                                             <span className="font-semibold text-sm lg:text-base">Dashboard</span>
                                         </span>
                                     </Link>
@@ -152,27 +159,26 @@ const Navbar = () => {
                                 </div>
                             </Link>
                         </div>
-                    </div>
 
-                    {/* User section */}
-                    {user && (
-                        <div className="flex items-center gap-2 pl-3 border-l border-slate-200">
-                            <div className="relative" ref={dropdownRef}>
-                                <button
-                                    onClick={() => setShowProfileDropdown(!showProfileDropdown)}
-                                    className="flex items-center gap-2 hover:scale-105 transition-all duration-300"
-                                >
-                                    <div className={`px-2 py-1 rounded-full text-xs font-bold border transition-all duration-300 ${isAdmin
-                                        ? 'bg-gradient-to-r from-purple-500/20 to-purple-600/20 text-purple-700 border-purple-300/50'
-                                        : 'bg-gradient-to-r from-indigo-500/20 to-indigo-600/20 text-indigo-700 border-indigo-300/50'
-                                        }`}>
-                                        {isAdmin ? '🛡️ Admin' : '👤 User'}
-                                    </div>
-                                    <span className="text-slate-700 font-bold text-sm">{user.name}</span>
-                                    <span className="text-slate-400 text-xs">
-                                        {showProfileDropdown ? '▲' : '▼'}
-                                    </span>
-                                </button>
+                        {/* User section */}
+                        {user && (
+                            <div className="flex items-center gap-2 pl-3 border-l border-slate-200">
+                                <div className="relative" ref={dropdownRef}>
+                                    <button
+                                        onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                                        className="flex items-center gap-2 hover:scale-105 transition-all duration-300"
+                                    >
+                                        <div className={`px-2 py-1 rounded-full text-xs font-bold border transition-all duration-300 ${isAdmin
+                                            ? 'bg-gradient-to-r from-purple-500/20 to-purple-600/20 text-purple-700 border-purple-300/50'
+                                            : 'bg-gradient-to-r from-indigo-500/20 to-indigo-600/20 text-indigo-700 border-indigo-300/50'
+                                            }`}>
+                                            {isAdmin ? '🛡️ Admin' : '👤 User'}
+                                        </div>
+                                        <span className="text-slate-700 font-bold text-sm">{user.name}</span>
+                                        <span className="text-slate-400 text-xs">
+                                            {showProfileDropdown ? '▲' : '▼'}
+                                        </span>
+                                    </button>
 
                                 {showProfileDropdown && (
                                     <div className="absolute right-0 mt-2 w-64 glass-morphism border border-slate-200 rounded-xl shadow-2xl overflow-hidden animate-fade-in">
@@ -271,6 +277,13 @@ const Navbar = () => {
                             {/* Admin-only mobile links - First in order */}
                             {user && isAdmin && (
                                 <>
+                                    <Link to="/users" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
+                                        <span className="flex items-center gap-2">
+                                            <span className="text-lg">👥</span>
+                                            <span className="font-semibold">Users</span>
+                                        </span>
+                                    </Link>
+
                                     <Link to="/" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
                                         <span className="flex items-center gap-2">
                                             <span className="text-lg">📊</span>
