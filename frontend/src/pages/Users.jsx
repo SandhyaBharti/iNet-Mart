@@ -168,8 +168,8 @@ const Users = () => {
                                     <tr key={user._id} className="border-b border-slate-100 hover:bg-slate-50 transition-colors">
                                         <td className="p-3 lg:p-4">
                                             <div>
-                                                <p className="font-semibold text-slate-800 text-sm lg:text-base">{user.name}</p>
-                                                <p className="text-xs text-slate-500">{user.email}</p>
+                                                <p className="font-semibold text-slate-800 text-sm lg:text-base truncate max-w-[200px]">{user.name}</p>
+                                                <p className="text-xs text-slate-500 truncate max-w-[200px]">{user.email}</p>
                                             </div>
                                         </td>
                                         <td className="p-3 lg:p-4">
@@ -188,7 +188,7 @@ const Users = () => {
                                         </td>
                                         <td className="p-3 lg:p-4">
                                             <p className="text-xs text-slate-600">
-                                                {new Date(user.createdAt).toLocaleDateString()}
+                                                📅 {new Date(user.createdAt).toLocaleDateString()}
                                             </p>
                                         </td>
                                         <td className="p-3 lg:p-4">
@@ -227,7 +227,7 @@ const Users = () => {
                                     </div>
 
                                     {/* Role and Date */}
-                                    <div className="flex items-center justify-between">
+                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2">
                                         <select
                                             value={user.role}
                                             onChange={(e) => handleRoleChange(user._id, e.target.value)}
@@ -241,7 +241,7 @@ const Users = () => {
                                             <option value="admin">🛡️ Admin</option>
                                         </select>
                                         <p className="text-[8px] sm:text-[10px] text-slate-600 flex-shrink-0">
-                                            {new Date(user.createdAt).toLocaleDateString()}
+                                            📅 {new Date(user.createdAt).toLocaleDateString()}
                                         </p>
                                     </div>
                                 </div>
