@@ -38,7 +38,7 @@ api.interceptors.response.use(
 export const getImageUrl = (imageUrl) => {
     if (!imageUrl) return '';
     if (imageUrl.startsWith('http')) return imageUrl;
-    return `${window.location.origin}${imageUrl}`;
+    return `http://localhost:5002${imageUrl}`;
 };
 
 export default api;
