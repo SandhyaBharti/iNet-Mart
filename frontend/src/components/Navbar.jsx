@@ -112,14 +112,14 @@ const Navbar = () => {
                                 <>
                                     <Link to="/users" className="nav-link">
                                         <span className="flex items-center gap-2">
-                                            <span className="text-base lg:text-lg">�</span>
+                                            <span className="text-base lg:text-lg">👥</span>
                                             <span className="font-semibold text-sm lg:text-base">Users</span>
                                         </span>
                                     </Link>
 
                                     <Link to="/" className="nav-link">
                                         <span className="flex items-center gap-2">
-                                            <span className="text-base lg:text-lg">�📊</span>
+                                            <span className="text-base lg:text-lg">📊</span>
                                             <span className="font-semibold text-sm lg:text-base">Dashboard</span>
                                         </span>
                                     </Link>
@@ -280,22 +280,22 @@ const Navbar = () => {
                                 <>
                                     <Link to="/users" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
                                         <span className="flex items-center gap-2">
-                                            <span className="text-lg">👥</span>
-                                            <span className="font-semibold">Users</span>
+                                            <span className="text-sm">👥</span>
+                                            <span className="font-semibold text-xs">Users</span>
                                         </span>
                                     </Link>
 
                                     <Link to="/" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
                                         <span className="flex items-center gap-2">
-                                            <span className="text-lg">📊</span>
-                                            <span className="font-semibold">Dashboard</span>
+                                            <span className="text-sm">📊</span>
+                                            <span className="font-semibold text-xs">Dashboard</span>
                                         </span>
                                     </Link>
 
                                     <Link to="/activity" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
                                         <span className="flex items-center gap-2">
-                                            <span className="text-lg">📋</span>
-                                            <span className="font-semibold">Activity</span>
+                                            <span className="text-sm">📋</span>
+                                            <span className="font-semibold text-xs">Activity</span>
                                         </span>
                                     </Link>
                                 </>
@@ -305,8 +305,8 @@ const Navbar = () => {
                             {user && (
                                 <Link to="/products" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
                                     <span className="flex items-center gap-2">
-                                        <span className="text-lg">📦</span>
-                                        <span className="font-semibold">Products</span>
+                                        <span className="text-sm">📦</span>
+                                        <span className="font-semibold text-xs">Products</span>
                                     </span>
                                 </Link>
                             )}
@@ -315,8 +315,8 @@ const Navbar = () => {
                             {user && (
                                 <Link to="/orders" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
                                     <span className="flex items-center gap-2">
-                                        <span className="text-lg">📋</span>
-                                        <span className="font-semibold">Orders</span>
+                                        <span className="text-sm">📋</span>
+                                        <span className="font-semibold text-xs">Orders</span>
                                     </span>
                                 </Link>
                             )}
@@ -325,10 +325,10 @@ const Navbar = () => {
                             {user && (
                                 <Link to="/cart" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
                                     <span className="flex items-center gap-2">
-                                        <span className="text-lg">🛒</span>
-                                        <span className="font-semibold">Cart</span>
+                                        <span className="text-sm">🛒</span>
+                                        <span className="font-semibold text-xs">Cart</span>
                                         {getTotalItems() > 0 && (
-                                            <span className="bg-indigo-600 text-white text-xs px-2 py-1 rounded-full">
+                                            <span className="bg-indigo-600 text-white text-[10px] px-2 py-1 rounded-full">
                                                 {getTotalItems()}
                                             </span>
                                         )}
@@ -341,21 +341,21 @@ const Navbar = () => {
                                 <div className="border-t border-slate-200 pt-2 mt-2">
                                     <div className="px-3 py-2">
                                         <div className="flex items-center gap-3">
-                                            <div className={`px-3 py-1.5 rounded-full text-xs font-bold border ${isAdmin
+                                            <div className={`px-2 py-1 rounded-full text-[10px] font-bold border ${isAdmin
                                                 ? 'bg-gradient-to-r from-purple-500/20 to-purple-600/20 text-purple-700 border-purple-300/50'
                                                 : 'bg-gradient-to-r from-indigo-500/20 to-indigo-600/20 text-indigo-700 border-indigo-300/50'
                                                 }`}>
                                                 {isAdmin ? '🛡️ Admin' : '👤 User'}
                                             </div>
                                             <div>
-                                                <p className="text-slate-800 font-bold text-sm">{user.name}</p>
-                                                <p className="text-slate-600 text-xs">{user.email}</p>
+                                                <p className="text-slate-800 font-bold text-xs">{user.name}</p>
+                                                <p className="text-slate-600 text-[10px]">{user.email}</p>
                                             </div>
                                         </div>
                                     </div>
                                     <button
                                         onClick={handleLogout}
-                                        className="block w-full text-left px-3 py-2 rounded-lg hover:bg-red-50 transition-colors text-red-600 font-semibold"
+                                        className="block w-full text-left px-3 py-2 rounded-lg hover:bg-red-50 transition-colors text-red-600 font-semibold text-xs"
                                     >
                                         <span className="flex items-center gap-2">
                                             <span>➜</span>
@@ -368,14 +368,14 @@ const Navbar = () => {
                                 <div className="border-t border-slate-200 pt-2 mt-2 space-y-2">
                                     <Link to="/login" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
                                         <span className="flex items-center gap-2">
-                                            <span className="text-lg">🔑</span>
-                                            <span className="font-semibold">Login</span>
+                                            <span className="text-sm">🔑</span>
+                                            <span className="font-semibold text-xs">Login</span>
                                         </span>
                                     </Link>
                                     <Link to="/register" className="block px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors" onClick={() => setShowMobileMenu(false)}>
                                         <span className="flex items-center gap-2">
-                                            <span className="text-lg">📝</span>
-                                            <span className="font-semibold">Register</span>
+                                            <span className="text-sm">📝</span>
+                                            <span className="font-semibold text-xs">Register</span>
                                         </span>
                                     </Link>
                                 </div>
