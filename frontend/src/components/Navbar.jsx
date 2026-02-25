@@ -60,17 +60,18 @@ const Navbar = () => {
     return (
         <nav className="sticky top-0 z-50 glass-morphism border-b border-white/20 shadow-lg">
             <div className="max-w-7xl mx-auto px-0.5 sm:px-1 lg:px-8">
-                <div className="flex items-center justify-between">
-                    {/* Logo - Left side, always visible */}
+                {/* Mobile/Tablet Header - Compact */}
+                <div className="flex items-center justify-between lg:hidden">
+                    {/* Logo - Left side, only on mobile and tablet */}
                     <Link
                         to={isAdmin ? '/' : '/products'}
-                        className="group flex items-center gap-1 text-sm sm:text-base lg:text-xl font-bold hover:scale-105 transition-all duration-300"
+                        className="group flex items-center gap-1 text-sm sm:text-base font-bold hover:scale-105 transition-all duration-300"
                     >
                         <div className="relative">
-                            <span className="text-sm sm:text-base lg:text-xl block transform group-hover:rotate-12 transition-transform duration-300">🛒</span>
+                            <span className="text-sm sm:text-base block transform group-hover:rotate-12 transition-transform duration-300">🛒</span>
                             <div className="absolute -top-1 -right-1 w-2 h-2 bg-indigo-500 rounded-full animate-pulse-soft"></div>
                         </div>
-                        <span className="gradient-text font-extrabold tracking-tight animate-pulse-soft hover:animate-bounce transition-all duration-300 hidden sm:block text-[8px] sm:text-xs lg:text-base">
+                        <span className="gradient-text font-extrabold tracking-tight animate-pulse-soft hover:animate-bounce transition-all duration-300 hidden sm:block text-[8px] sm:text-xs">
                             iNet Mart
                         </span>
                         <span className="gradient-text font-extrabold tracking-tight animate-pulse-soft hover:animate-bounce transition-all duration-300 sm:hidden text-xs">
@@ -81,7 +82,7 @@ const Navbar = () => {
                     {/* Mobile menu button - Right side, only on mobile and tablet */}
                     <button
                         onClick={() => setShowMobileMenu(!showMobileMenu)}
-                        className="lg:hidden p-1 rounded hover:bg-slate-100 transition-colors bg-slate-50/50"
+                        className="p-1 rounded hover:bg-slate-100 transition-colors bg-slate-50/50"
                     >
                         <span className="text-[10px] sm:text-xs">☰</span>
                     </button>
@@ -155,13 +156,13 @@ const Navbar = () => {
 
                     {/* User section */}
                     {user && (
-                        <div className="flex items-center gap-4 pl-6 border-l border-slate-200">
+                        <div className="flex items-center gap-2 pl-3 border-l border-slate-200">
                             <div className="relative" ref={dropdownRef}>
                                 <button
                                     onClick={() => setShowProfileDropdown(!showProfileDropdown)}
-                                    className="flex items-center gap-3 hover:scale-105 transition-all duration-300"
+                                    className="flex items-center gap-2 hover:scale-105 transition-all duration-300"
                                 >
-                                    <div className={`px-3 py-1.5 rounded-full text-xs font-bold border transition-all duration-300 ${isAdmin
+                                    <div className={`px-2 py-1 rounded-full text-xs font-bold border transition-all duration-300 ${isAdmin
                                         ? 'bg-gradient-to-r from-purple-500/20 to-purple-600/20 text-purple-700 border-purple-300/50'
                                         : 'bg-gradient-to-r from-indigo-500/20 to-indigo-600/20 text-indigo-700 border-indigo-300/50'
                                         }`}>
