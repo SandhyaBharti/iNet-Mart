@@ -107,17 +107,17 @@ const Dashboard = () => {
                         <ResponsiveContainer width="100%" height={window.innerWidth < 640 ? 150 : window.innerWidth < 1024 ? 200 : 300}>
                             <LineChart data={analytics.salesTrend || []}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                                <XAxis dataKey="date" stroke="#64748b" fontSize={window.innerWidth < 640 ? 8 : window.innerWidth < 1024 ? 9 : 10} />
-                                <YAxis stroke="#64748b" fontSize={window.innerWidth < 640 ? 8 : window.innerWidth < 1024 ? 9 : 10} />
+                                <XAxis dataKey="date" stroke="#64748b" fontSize={window.innerWidth < 640 ? 12 : window.innerWidth < 1024 ? 14 : 14} />
+                                <YAxis stroke="#64748b" fontSize={window.innerWidth < 640 ? 12 : window.innerWidth < 1024 ? 14 : 14} />
                                 <Tooltip
                                     contentStyle={{
                                         backgroundColor: 'white',
                                         border: '1px solid #e2e8f0',
                                         borderRadius: '8px',
-                                        fontSize: window.innerWidth < 640 ? '10px' : window.innerWidth < 1024 ? '11px' : '12px'
+                                        fontSize: window.innerWidth < 640 ? '12px' : window.innerWidth < 1024 ? '14px' : '14px'
                                     }}
                                 />
-                                <Legend wrapperStyle={{ fontSize: window.innerWidth < 640 ? '10px' : window.innerWidth < 1024 ? '11px' : '12px' }} />
+                                <Legend wrapperStyle={{ fontSize: window.innerWidth < 640 ? '12px' : window.innerWidth < 1024 ? '14px' : '14px' }} />
                                 <Line
                                     type="monotone"
                                     dataKey="sales"
@@ -145,7 +145,7 @@ const Dashboard = () => {
                                     outerRadius={window.innerWidth < 640 ? 40 : window.innerWidth < 1024 ? 55 : 80}
                                     fill="#8884d8"
                                     dataKey="value"
-                                    fontSize={window.innerWidth < 640 ? 8 : window.innerWidth < 1024 ? 10 : 12}
+                                    fontSize={window.innerWidth < 640 ? 12 : window.innerWidth < 1024 ? 14 : 14}
                                 >
                                     {(analytics.categories || []).map((entry, index) => (
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
