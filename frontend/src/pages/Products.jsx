@@ -133,7 +133,7 @@ const Products = () => {
 
                             <div className="relative">
                                 <span className="absolute left-2 sm:left-3 lg:left-4 top-1/2 transform -translate-y-1/2 text-slate-400 text-xs sm:text-sm lg:text-base">
-                                    📊
+                                    
                                 </span>
                                 <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="input pl-8 sm:pl-10 lg:pl-12 appearance-none text-xs sm:text-sm lg:text-base py-2 sm:py-2 lg:py-3">
                                     <option value="createdAt">🗓️Sort by Date</option>
