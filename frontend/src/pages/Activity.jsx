@@ -93,11 +93,11 @@ const Activity = () => {
 
                                 <div className="flex-1">
                                     <div className="flex items-start justify-between mb-2">
-                                        <h3 className="text-lg font-semibold">{activity.description}</h3>
+                                        <h3 className="text-lg font-semibold">{activity.description?.replace(/\$/g, '₹')}</h3>
                                         <span className={`badge ${activity.action === 'created' ? 'badge-success' :
-                                                activity.action === 'updated' ? 'badge-info' :
-                                                    activity.action === 'deleted' ? 'badge-error' :
-                                                        'badge-warning'
+                                            activity.action === 'updated' ? 'badge-info' :
+                                                activity.action === 'deleted' ? 'badge-error' :
+                                                    'badge-warning'
                                             }`}>
                                             {activity.action}
                                         </span>

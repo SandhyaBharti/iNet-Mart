@@ -114,7 +114,7 @@ export const createOrder = async (req, res) => {
             entityId: order._id,
             entityName: `Order #${order._id.toString().slice(-6)}`,
             action: 'ordered',
-            description: `Created order with ${items.length} items - Total: $${totalAmount}`
+            description: `Created order with ${items.length} items - Total: ₹${totalAmount}`
         });
 
         res.status(201).json(order);
